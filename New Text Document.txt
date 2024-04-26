@@ -1,0 +1,4 @@
+	Usage Packages
+	1. Tailwind CSS
+	2. DaisyUI
+	3. React Icons
