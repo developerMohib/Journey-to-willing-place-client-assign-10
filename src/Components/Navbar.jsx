@@ -83,11 +83,21 @@ const handleTheme = (e) => {
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{navLinks}</ul>
         </div>
-        <div className="navbar-end">
+        <div className=" space-x-1 navbar-end">
           <div>
-            <Link className="border p-2" to="/login">
-              {" "}
-              Login{" "}
+            <Link to="/login"
+              className="relative inline-flex items-center justify-center p-2 overflow-hidden tracking-tighter border rounded-lg group"
+            >
+              <span className="absolute w-0 h-0 transition-all duration-700 ease-out bg-green-500 rounded-full group-hover:w-56 group-hover:h-56"></span>
+              <span className="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent"></span>
+              <span className="relative">Login </span>
+            </Link>
+            <Link to="/register"
+              className="relative inline-flex items-center justify-center p-2 overflow-hidden tracking-tighter border rounded-lg group"
+            >
+              <span className="absolute w-0 h-0 transition-all duration-700 ease-out bg-green-500 rounded-full group-hover:w-56 group-hover:h-56"></span>
+              <span className="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent"></span>
+              <span className="relative">Register </span>
             </Link>
           </div>
 
