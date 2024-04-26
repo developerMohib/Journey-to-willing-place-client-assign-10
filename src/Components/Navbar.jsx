@@ -1,8 +1,41 @@
 import { Link, NavLink } from "react-router-dom";
 import { LuSun } from "react-icons/lu";
 import { LuMoonStar } from "react-icons/lu";
+import { useEffect, useState } from "react";
+import { RiMenuAddLine } from "react-icons/ri";
+import { MdOutlineRestaurantMenu } from "react-icons/md";
 
 const Navbar = () => {
+const [theme, setTheme] = useState('light');
+const [open, setOpen] =useState(false)
+
+useEffect(() => {
+  const localTheme = localStorage.getItem('theme');
+  if(localTheme){
+    setTheme(localTheme);
+  }
+},[])
+
+// console.log(theme, 'theme age')
+
+useEffect(()=>{
+  localStorage.setItem('theme', theme);
+  document.querySelector("html").setAttribute("data-theme", theme);
+},[theme])
+
+const handleTheme = (e) => {
+  const value = e.target.checked;
+  // console.log(value, 'value')
+  if(value){
+    setTheme('night')
+  }
+  else{
+    setTheme('light')
+  }
+}
+
+// console.log(theme, 'theme pore')
+
   const navLinks = (
     <>
       <NavLink className="px-1 py-1 mx-1 " to="/">
@@ -28,28 +61,17 @@ const Navbar = () => {
   );
   return (
     <div>
-      <div className="navbar bg-base-100">
+      <div className="navbar bg-base-100 px-10 shadow-lg z-10">
         <div className="navbar-start">
-          <div className="dropdown">
+          <div onClick={() => setOpen(!open)} className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h8m-8 6h16"
-                />
-              </svg>
+              {
+                open === true ?  <MdOutlineRestaurantMenu className="text-2xl" > </MdOutlineRestaurantMenu> :
+                <RiMenuAddLine className="text-2xl" > </RiMenuAddLine>
+              }
             </div>
-            <ul
-              tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+            <ul tabIndex={0}
+              className={`menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-56 ${open === true ? '' : " hidden" } `}
             >
               {navLinks}
             </ul>
@@ -72,10 +94,11 @@ const Navbar = () => {
           <div>
             <label className="swap swap-rotate">
               {/* this hidden checkbox controls the state */}
-              <input
+              <input 
+              onClick={handleTheme}
                 type="checkbox"
                 className="theme-controller"
-                value="synthwave"
+                value="night"
               />
 
               {/* sun icon */}
