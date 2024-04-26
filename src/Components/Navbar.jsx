@@ -22,7 +22,6 @@ const Navbar = () => {
         Add Tourists Spot{" "}
       </NavLink>
       <NavLink className="px-1 py-1 mx-1 " to="/myList">
-        {" "}
         My List{" "}
       </NavLink>
     </>
@@ -56,8 +55,7 @@ const Navbar = () => {
             </ul>
           </div>
           <Link to="/" className=" font-bold text-xl">
-            {" "}
-            JOURNEY{" "}
+            JOURNEY
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
