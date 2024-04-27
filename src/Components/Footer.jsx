@@ -2,7 +2,7 @@ import { FaFacebook, FaYoutube, FaGithub, FaLinkedin } from "react-icons/fa";
 import { Link } from "react-router-dom";
 const Footer = () => {
     return (
-        <div className="lg:px-10 md:px-10 bg-base-200 md:pt-20 px-0 ">
+        <div className="px-10 bg-base-200 md:pt-20 ">
             <footer className="footer text-base-content">
   <aside>
     <Link className="font-extrabold text-2xl" to='/' > JOURNEY </Link>

@@ -11,7 +11,7 @@ const Slider = () => {
           <div
             className="hero min-h-screen"
             style={{
-              backgroundImage: "url(https://i.ibb.co/BzWM4vd/slider1.jpg)",
+              backgroundImage: "url(https://i.pinimg.com/736x/f5/1c/cf/f51ccfc2067f689150fb62512fd1b5a6.jpg)",
               backgroundPosition: "bottom center",
             }}
           >
@@ -36,7 +36,7 @@ const Slider = () => {
           <div
             className="hero min-h-screen"
             style={{
-              backgroundImage: "url(https://i.ibb.co/jwF0SJ4/slider2.jpg)",
+              backgroundImage: "url(https://upload.wikimedia.org/wikipedia/commons/7/73/Hanging_bridge_of_Rangamati%2C_Bangladesh._.jpg)",
             }}
           >
             <div className="hero-overlay bg-opacity-60"></div>
@@ -59,9 +59,8 @@ const Slider = () => {
           <div
             className="hero min-h-screen"
             style={{
-              backgroundImage: "url(https://i.ibb.co/p4XycRp/slider3.jpg)",
+              backgroundImage: "url(https://dkavqk5moymop.cloudfront.net/Global/Gallery/Bandarban:AFull-DayofAdventure/GalleryImages/78bdc54727fd4f7aab963aa6094b724a_130721629_113627590579772_5568424667079560241_n.jpg)",
               backgroundPosition: "bottom center",
-              backgroundSize: "contain",
             }}
           >
             <div className="hero-overlay bg-opacity-60"></div>
@@ -84,7 +83,7 @@ const Slider = () => {
           <div
             className="hero min-h-screen "
             style={{
-              backgroundImage: "url(https://i.ibb.co/hcnSXBL/slider4.jpg)",
+              backgroundImage: "url(https://live.staticflickr.com/227/478856818_19331b599e_c.jpg)",
               backgroundPosition: "bottom center",
             }}
           >
@@ -112,7 +111,7 @@ const Slider = () => {
         <span style={{ color: 'red', fontWeight: 'bold' }}>
           {/* Style will be inherited from the parent element */}
           <Typewriter
-            words={['Eat', 'Sleep', 'Code', 'Repeat!']}
+            words={['Tour', 'Sleep', 'Journey', 'Repeat!']}
             loop={Infinity}
             cursor
             cursorStyle='_'
@@ -124,9 +123,7 @@ const Slider = () => {
       </h1>
           {/* animation Text */}
           <p className="mb-5 text-white">
-            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-            excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
-            a id nisi.
+          Exploring new places fuels the souls thirst for adventure, unveiling hidden wonders and forging unforgettable memories. Across landscapes and cultures, we discover the beauty of diversity, weaving our own unique narrative in the fabric of the world. With each journey.
           </p>
           {/* <button className="btn btn-primary">Get Started</button> */}
           <div>
