@@ -48,6 +48,7 @@ const Home = () => {
 
       </div>
       {/* card */}
+      
       <div className="lg:grid md:grid grid-cols-3 gap-8 my-16 lg:p-8 md:p-4 p-1 ">
       {sixSpot.slice(0,5).map((spot) => (
         <div key={spot?._id} >

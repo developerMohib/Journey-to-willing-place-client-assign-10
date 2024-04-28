@@ -11,6 +11,8 @@ import PropTypes from 'prop-types';
 
 const Country = () => {
 
+  // {country_Name,tourists_spot_name,location,average_cost,seasonality,travel_time,photoURL,totaVisitorsPerYear,details,photoTitle, email};
+
   return (
     <div className="p-10 bg-base-300 ">
       {/* country Section */}
