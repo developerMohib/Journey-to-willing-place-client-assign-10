@@ -12,8 +12,8 @@ const Navbar = () => {
   const [theme, setTheme] = useState("light");
   const [open, setOpen] = useState(false);
   const { user, logOut } = useContext(AuthCustomContext);
-  console.log(user, 'from navvar')
-  console.log(user?.photoURL, 'from ----navvar')
+  // console.log(user, 'from navvar')
+  // console.log(user?.photoURL, 'from ----navvar')
 
   const handleLogOut = () => {
     logOut()
@@ -54,23 +54,19 @@ const Navbar = () => {
   const navLinks = (
     <>
       <NavLink className="px-1 py-1 mx-1 " to="/">
-        {" "}
-        Home{" "}
+        Home
       </NavLink>
       <NavLink className="px-1 py-1 mx-1 " to="/touristSpot">
-        {" "}
-        All Tourists Spot{" "}
-      </NavLink>
-      <NavLink className="px-1 py-1 mx-1 " to="/contact">
-        {" "}
-        Contact{" "}
+        All Tourists Spots
       </NavLink>
       <NavLink className="px-1 py-1 mx-1 " to="/addSpot">
-        {" "}
-        Add Tourists Spot{" "}
+        Add Tourists Spot
       </NavLink>
       <NavLink className="px-1 py-1 mx-1 " to="/myList">
-        My List{" "}
+        My List
+      </NavLink>
+      <NavLink className="px-1 py-1 mx-1 " to="/contact">
+        Contact Us
       </NavLink>
     </>
   );

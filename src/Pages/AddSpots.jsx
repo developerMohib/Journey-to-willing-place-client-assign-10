@@ -1,10 +1,56 @@
+import { useContext } from "react";
+import { AuthCustomContext } from "../MainProvider/MainProvider";
+import Swal from "sweetalert2";
+
 const AddSpots = () => {
+  const {user} = useContext(AuthCustomContext);
+  const email = user?.email ;
+  const handleAddSpot = (e) => {
+    e.preventDefault();
+    const fromV = e.target ;
+    const country_Name = fromV.country_Name.value;
+    const tourists_spot_name =fromV.tourists_spot_name.value;
+    const location = fromV.location.value;
+    const average_cost = fromV.average_cost.value;
+    const seasonality = fromV.seasonality.value;
+    const travel_time = fromV.travel_time.value;
+    const photoTitle = fromV.photoTitle.value;
+    const photoURL = fromV.url.value;
+    const totaVisitorsPerYear = fromV.totaVisitorsPerYear.value;
+    const details = fromV.details.value;
+    fromV.reset()
+
+    const spotInfo = {country_Name,tourists_spot_name,location,average_cost,seasonality,travel_time,photoURL,totaVisitorsPerYear,details,photoTitle, email};
+    
+    console.log(spotInfo );
+    // data send to server 
+    fetch(`http://localhost:5000/touristSpot`, {
+            method: "POST",
+            headers: {
+                "Content-type": "application/json"
+            },
+            body: JSON.stringify(spotInfo)
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data)
+            if(data.insertedId){
+                // alert('spot added');
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'You added a New Spot',
+                    icon: 'success',
+                    confirmButtonText: 'Cool'
+                  })
+            }
+        })
+  }
   return (
     <div>
       <div>
         <h1 className="text-center font-bold text-2xl my-10 ">Add Tourists Spot</h1>
         <div className="bg-[#F4F3F0] p-10 ">
-          <form>
+          <form onSubmit={handleAddSpot} >
             {/* form coutry name and spot name row */}
             <div className="md:flex gap-8 ">
               <label className="form-control w-full">
@@ -80,16 +126,16 @@ const AddSpots = () => {
                 />
               </label>
             </div>
-            {/* form photo  and visitor row */}
+            {/* form photo title  and visitor row */}
             <div className="md:flex gap-8 ">
             <label className="form-control w-full">
                 <div className="label">
-                  <span className="label-text text-xl ">Photo URL</span>
+                  <span className="label-text text-xl ">Photo Title</span>
                 </div>
                 <input
                   type="text"
-                  placeholder="Photo URL"
-                  name="url"
+                  placeholder="Photo Title"
+                  name="photoTitle"
                   className="input input-bordered w-full"
                 />
               </label>
@@ -101,6 +147,20 @@ const AddSpots = () => {
                   type="number"
                   placeholder="100000 travllers"
                   name="totaVisitorsPerYear"
+                  className="input input-bordered w-full"
+                />
+              </label>
+            </div>
+            {/* photo url */}
+            <div>
+            <label className="form-control w-full">
+                <div className="label">
+                  <span className="label-text text-xl ">Photo URL</span>
+                </div>
+                <input
+                  type="text"
+                  placeholder="Photo URL"
+                  name="url"
                   className="input input-bordered w-full"
                 />
               </label>
@@ -125,7 +185,7 @@ const AddSpots = () => {
             <input
               className=" btn border-none btn-block my-10 bg-success "
               type="submit"
-              value="Add Coffee"
+              value="Add Tourist Spot"
             />
           </form>
         </div>

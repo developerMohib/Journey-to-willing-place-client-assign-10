@@ -19,7 +19,7 @@ const firebaseConfig = {
   messagingSenderId: "595756096846",
   appId: "1:595756096846:web:2dda8c01369bb99435d21f",
 };
-console.log(import.meta.env.apiKey , 'ise for aser malfdkj' )
+// console.log(import.meta.env.apiKey , 'ise for aser malfdkj' )
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
