@@ -107,7 +107,7 @@ const Slider = () => {
           <h1 className="md:text-5xl text-3xl font-bold text-white ">Hello there</h1>
           {/* animation Text */}
           <h1 className="mb-5 md:text-5xl text-3xl font-bold text-white md:py-4 m-auto" >
-        Life is simple
+        Life is simple{" "}
         <span className="text-red-600 font-bold" >
           <Typewriter
             words={['Tour', 'Sleep', 'Journey', 'Repeat!']}

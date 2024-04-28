@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 
 const AddSpots = () => {
   const {user} = useContext(AuthCustomContext);
+  const name = user?.displayName ;
   const email = user?.email ;
   const handleAddSpot = (e) => {
     e.preventDefault();
@@ -49,8 +50,33 @@ const AddSpots = () => {
     <div>
       <div>
         <h1 className="text-center font-bold text-2xl my-10 ">Add Tourists Spot</h1>
-        <div className="bg-[#F4F3F0] p-10 ">
+        <div className="bg-base-200 p-10 ">
           <form onSubmit={handleAddSpot} >
+            {/* form coutry name and spot name row */}
+            <div className="md:flex gap-8 ">
+              <label className="form-control w-full">
+                <div className="label">
+                  <span className="label-text text-xl ">User Name</span>
+                </div>
+                <input
+                  type="text"
+                  defaultValue={name}
+                  placeholder="User Name"
+                  className="input input-bordered w-full"
+                />
+              </label>
+              <label className="form-control w-full">
+                <div className="label">
+                  <span className="label-text text-xl "> User Email </span>
+                </div>
+                <input
+                  type="text"
+                  defaultValue={email}
+                  placeholder="User email"
+                  className="input input-bordered w-full"
+                />
+              </label>
+            </div>
             {/* form coutry name and spot name row */}
             <div className="md:flex gap-8 ">
               <label className="form-control w-full">

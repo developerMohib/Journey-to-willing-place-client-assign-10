@@ -8,6 +8,8 @@ import AddSpots from "./Pages/AddSpots";
 import MyList from "./Pages/MyList";
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";
+import Protected from "./Components/Protected";
+import ViewDetails from "./Components/ViewDetails";
 
 export const router = createBrowserRouter([
     {
@@ -29,8 +31,13 @@ export const router = createBrowserRouter([
           element: <TouristSpot> </TouristSpot>,
         },
         {
+          path: "/viewDetails",
+          element: <Protected> <ViewDetails> </ViewDetails> </Protected>,
+          
+        },
+        {
           path: "/addSpot",
-          element: <AddSpots> </AddSpots>,
+          element: <Protected> <AddSpots> </AddSpots> </Protected> ,
         },
         {
           path: "/myList",

@@ -2,7 +2,6 @@ import { useContext, useState } from "react";
 import { FaGithub, FaGoogle, FaTwitter } from "react-icons/fa";
 import { FaFaceFrown, FaFaceGrin } from "react-icons/fa6";
 import { Link } from "react-router-dom";
-import { FaRegCircleUser } from "react-icons/fa6";
 import { AuthCustomContext } from "../MainProvider/MainProvider";
 import Swal from "sweetalert2";
 
@@ -16,7 +15,7 @@ const Login = () => {
     const name = formV.name.value;
     const email = formV.email.value;
     const password = formV.password.value;
-    console.log(password, email, 'login page')
+    console.log(password, email,name, 'login page')
 
      // send email and password in database
      logInUser(email, password)
@@ -37,8 +36,8 @@ const Login = () => {
        console.error(error.message, 'login page');
        Swal.fire({
          icon: 'error',
-         title: 'Oops...',
-         text: 'Login failed! Please register and try again.'
+         title: "Ooop...!",
+         text: 'This Email already used!.'
        });
      });
   }
@@ -46,6 +45,11 @@ const Login = () => {
     signInGoogle()
       .then((result) => {
         console.log(result.user);
+        Swal.fire({
+          icon: 'success',
+          title: "success!",
+          text: 'You have logged in successfully!.'
+        });
       })
       .catch((error) => {
         console.error(error);
@@ -56,6 +60,11 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
+        Swal.fire({
+          icon: 'success',
+          title: "success!",
+          text: 'You have logged in successfully!.'
+        });
       })
       .catch((error) => {
         console.error(error);
@@ -67,9 +76,6 @@ const Login = () => {
     <div>
       <div className="text-center mt-10">
         <h1 className="md:text-5xl text-3xl font-bold ">Log In</h1>
-        <FaRegCircleUser className="md:text-8xl text-5xl mt-5 font-bold mx-auto">
-          {" "}
-        </FaRegCircleUser>
       </div>
       <div className="md:grid grid-cols-2 items-center my-10 px-10 justify-between">
         <div>

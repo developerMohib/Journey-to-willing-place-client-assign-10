@@ -22,7 +22,7 @@ const MainProvider = ({children}) => {
     // sign in with google
     const signInGoogle = () => {
         setLoading(true);
-        signInWithPopup(auth, googleProvider)
+        return signInWithPopup(auth, googleProvider)
     }
     // sign in with google
     const signInGithub = () => {

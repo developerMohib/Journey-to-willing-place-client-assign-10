@@ -24,15 +24,10 @@ const Navbar = () => {
       console.error(error);
     });
   };
-
   useEffect(() => {
     const localTheme = localStorage.getItem("theme");
-    if (localTheme) {
-      setTheme(localTheme);
-    }
+    setTheme(localTheme);
   }, []);
-
-  // console.log(theme, 'theme age')
 
   useEffect(() => {
     localStorage.setItem("theme", theme);
@@ -40,9 +35,7 @@ const Navbar = () => {
   }, [theme]);
 
   const handleTheme = (e) => {
-    const value = e.target.checked;
-    // console.log(value, 'value')
-    if (value) {
+    if (e.target.checked) {
       setTheme("night");
     } else {
       setTheme("light");
