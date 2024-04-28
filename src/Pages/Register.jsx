@@ -1,10 +1,55 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { FaFaceFrown, FaFaceGrin, FaRegCircleUser } from "react-icons/fa6";
+import { AuthCustomContext } from "../MainProvider/MainProvider";
+import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const Register = () => {
   const [showPass, setShowPass] = useState(false);
-    return (
-      <div>
+  const { registerUser,updateProfileFromUser } = useContext(AuthCustomContext);
+
+  const handleRegister = (e) => {
+    e.preventDefault();
+    const formV = e.target;
+    const name = formV.name.value;
+    const email = formV.email.value;
+    const photoUrl = formV.url.value;
+    const password = formV.password.value;
+
+    console.log(name, email, photoUrl);
+
+    // Register User
+    registerUser(email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        console.log(user)
+        updateProfileFromUser(name, photoUrl)
+        .then(() => {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Your account create successfully !",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          return ;
+        })
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        console.error(errorMessage);
+        Swal.fire({
+          position: "top-end",
+          icon: "error",
+          title: "This Email already use",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      });
+  };
+
+  return (
+    <div>
       <div className="text-center mt-10">
         <h1 className="md:text-5xl text-3xl font-bold ">Register</h1>
         <FaRegCircleUser className="md:text-8xl text-5xl mt-5 font-bold mx-auto">
@@ -22,7 +67,23 @@ const Register = () => {
         {/* my form */}
         <div className="w-full m-auto space-y-3 rounded-xl bg-gray-50 text-gray-800">
           <div className="bg-[#F4F3F0] p-10 ">
-            <form>
+            <form onSubmit={handleRegister}>
+              <div>
+                <label className="form-control w-full">
+                  <div className="label">
+                    <span className="label-text">Name</span>
+                  </div>
+                  <input
+                    required
+                    type="name"
+                    name="name"
+                    id="name"
+                    placeholder="Name"
+                    className="input input-bordered w-full"
+                  />
+                </label>
+              </div>
+              {/* email */}
               <div>
                 <label className="form-control w-full">
                   <div className="label">
@@ -81,11 +142,17 @@ const Register = () => {
                 value="Register"
               />
             </form>
+            <p className="text-xl text-center sm:px-6 text-gray-600">
+              Have already an account?
+              <Link className="underline mx-1 ml-2 text-gray-800" to="/login">
+                Sign in
+              </Link>
+            </p>
           </div>
         </div>
       </div>
     </div>
-    );
+  );
 };
 
 export default Register;

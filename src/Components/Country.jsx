@@ -11,26 +11,26 @@ const Country = () => {
   return (
     <div className="p-10 bg-base-300 ">
       <div>
-        <h1 className="text-5xl font-bold text-center">
+        <h1 className="md:text-5xl text-4xl md:font-bold font-semibold text-center">
           Find Your Next Adventure
         </h1>
         <h1 className="text-2xl mt-5 font-bold text-center">Tourists Spots</h1>
       </div>
       {/* Sorting */}
       <div className="text-center mt-10 ">
-        <div className="join ">
-          <select className="select select-bordered w-72 join-item">
-            <option selected>Average Cost</option>
+        <div className="md:join ">
+          <select className="select select-bordered lg:w-72 md:w-56 w-52 join-item">
+            <option defaultValue>Average Cost</option>
             <option>Assending</option>
             <option>Dissending</option>
           </select>
-          <select className="select select-bordered w-72 join-item">
-            <option selected>Average Vistior</option>
+          <select className="select select-bordered md:w-72 w-52 join-item">
+            <option defaultValue>Average Vistior</option>
             <option>Assending</option>
             <option>Dissending</option>
           </select>
-          <select className="select select-bordered w-72 join-item">
-            <option selected>Seasonality</option>
+          <select className="select select-bordered md:w-72 w-52 join-item">
+            <option defaultValue>Seasonality</option>
             <option>Winter</option>
             <option>Summer</option>
             <option>Rainy</option>
@@ -309,7 +309,7 @@ const Country = () => {
 
       {/* country Section */}
       <div>
-        <h1 className="text-5xl font-bold text-center">
+        <h1 className="text-3xl md:text-5xl font-bold text-center">
           Find Your Next Adventure
         </h1>
         <h1 className="text-2xl mt-5 font-bold text-center">

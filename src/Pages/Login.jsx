@@ -1,11 +1,68 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { FaGithub, FaGoogle, FaTwitter } from "react-icons/fa";
 import { FaFaceFrown, FaFaceGrin } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import { FaRegCircleUser } from "react-icons/fa6";
+import { AuthCustomContext } from "../MainProvider/MainProvider";
+import Swal from "sweetalert2";
 
 const Login = () => {
   const [showPass, setShowPass] = useState(false);
+  const {user, signInGoogle,logInUser, signInGithub} = useContext(AuthCustomContext);
+
+  const handleSignIn = (e) => {
+    e.preventDefault(); 
+    const formV = e.target ;
+    const name = formV.name.value;
+    const email = formV.email.value;
+    const password = formV.password.value;
+    console.log(password, email, 'login page')
+
+     // send email and password in database
+     logInUser(email, password)
+     .then((result) => {
+       // Successfully logged in
+       const user = result.user;
+       if (user) {
+         Swal.fire({
+           position: "top-end",
+           icon: "success",
+           title: "You have logged in successfully!",
+           showConfirmButton: false,
+           timer: 1500
+         });
+       }
+     })
+     .catch((error) => {
+       console.error(error.message, 'login page');
+       Swal.fire({
+         icon: 'error',
+         title: 'Oops...',
+         text: 'Login failed! Please register and try again.'
+       });
+     });
+  }
+  const hanldeGoogle = () => {
+    signInGoogle()
+      .then((result) => {
+        console.log(result.user);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+  const handleGithub = () => {
+    signInGithub()
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  console.log(user,'user from login ')
   return (
     <div>
       <div className="text-center mt-10">
@@ -25,7 +82,7 @@ const Login = () => {
         {/* my form */}
         <div className="w-full m-auto space-y-3 rounded-xl bg-gray-50 text-gray-800">
           <div className="bg-[#F4F3F0] p-10 ">
-            <form>
+            <form onSubmit={handleSignIn} >
               <div>
                 <label className="form-control w-full">
                   <div className="label">
@@ -64,20 +121,6 @@ const Login = () => {
                   </span>
                 </label>
               </div>
-              {/* form photo url row */}
-              <div className="">
-                <label className="form-control w-full">
-                  <div className="label">
-                    <span className="label-text">Photo URL</span>
-                  </div>
-                  <input
-                    type="text"
-                    placeholder="Name"
-                    name="url"
-                    className="input input-bordered w-full"
-                  />
-                </label>
-              </div>
               <input
                 className=" btn border-none btn-block my-10 bg-success "
                 type="submit"
@@ -93,6 +136,7 @@ const Login = () => {
             </div>
             <div className="flex justify-center space-x-4">
               <button
+              onClick={hanldeGoogle}
                 aria-label="Log in with Google"
                 className="p-3 rounded-sm"
               >
@@ -105,6 +149,7 @@ const Login = () => {
                 <FaTwitter />
               </button>
               <button
+              onClick={handleGithub}
                 aria-label="Log in with GitHub"
                 className="p-3 rounded-sm"
               >
@@ -112,9 +157,9 @@ const Login = () => {
               </button>
               {/* <ToastContainer /> */}
             </div>
-            <p className="text-xs text-center sm:px-6 text-gray-600">
+            <p className="text-xl text-center sm:px-6 text-gray-600">
               Dont have an account?
-              <Link className="underline text-gray-800" to="/register">
+              <Link className="underline mx-1 ml-2 text-gray-800"  to="/register">
                 Sign up
               </Link>
             </p>

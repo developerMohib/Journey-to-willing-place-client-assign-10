@@ -1,40 +1,55 @@
 import { Link, NavLink } from "react-router-dom";
 import { LuSun } from "react-icons/lu";
 import { LuMoonStar } from "react-icons/lu";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { RiMenuAddLine } from "react-icons/ri";
 import { MdOutlineRestaurantMenu } from "react-icons/md";
+import { AuthCustomContext } from "../MainProvider/MainProvider";
+import { Tooltip } from 'react-tooltip'
+
 
 const Navbar = () => {
-const [theme, setTheme] = useState('light');
-const [open, setOpen] =useState(false)
+  const [theme, setTheme] = useState("light");
+  const [open, setOpen] = useState(false);
+  const { user, logOut } = useContext(AuthCustomContext);
+  console.log(user, 'from navvar')
+  console.log(user?.photoURL, 'from ----navvar')
 
-useEffect(() => {
-  const localTheme = localStorage.getItem('theme');
-  if(localTheme){
-    setTheme(localTheme);
-  }
-},[])
+  const handleLogOut = () => {
+    logOut()
+    .then((result) => {
+      console.log(result.user,'user log out');
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+  };
 
-// console.log(theme, 'theme age')
+  useEffect(() => {
+    const localTheme = localStorage.getItem("theme");
+    if (localTheme) {
+      setTheme(localTheme);
+    }
+  }, []);
 
-useEffect(()=>{
-  localStorage.setItem('theme', theme);
-  document.querySelector("html").setAttribute("data-theme", theme);
-},[theme])
+  // console.log(theme, 'theme age')
 
-const handleTheme = (e) => {
-  const value = e.target.checked;
-  // console.log(value, 'value')
-  if(value){
-    setTheme('night')
-  }
-  else{
-    setTheme('light')
-  }
-}
+  useEffect(() => {
+    localStorage.setItem("theme", theme);
+    document.querySelector("html").setAttribute("data-theme", theme);
+  }, [theme]);
 
-// console.log(theme, 'theme pore')
+  const handleTheme = (e) => {
+    const value = e.target.checked;
+    // console.log(value, 'value')
+    if (value) {
+      setTheme("night");
+    } else {
+      setTheme("light");
+    }
+  };
+
+  // console.log(theme, 'theme pore')
 
   const navLinks = (
     <>
@@ -61,17 +76,23 @@ const handleTheme = (e) => {
   );
   return (
     <div>
-      <div className="navbar bg-base-100 px-10 shadow-lg z-10">
+      <div className="navbar bg-base-100 md:px-10 shadow-lg z-10">
         <div className="navbar-start">
           <div onClick={() => setOpen(!open)} className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-              {
-                open === true ?  <MdOutlineRestaurantMenu className="text-2xl" > </MdOutlineRestaurantMenu> :
-                <RiMenuAddLine className="text-2xl" > </RiMenuAddLine>
-              }
+              {open === true ? (
+                <MdOutlineRestaurantMenu className="text-2xl">
+                  {" "}
+                </MdOutlineRestaurantMenu>
+              ) : (
+                <RiMenuAddLine className="text-2xl"> </RiMenuAddLine>
+              )}
             </div>
-            <ul tabIndex={0}
-              className={`menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-56 ${open === true ? '' : " hidden" } `}
+            <ul
+              tabIndex={0}
+              className={`menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-56 ${
+                open === true ? "" : " hidden"
+              } `}
             >
               {navLinks}
             </ul>
@@ -85,37 +106,63 @@ const handleTheme = (e) => {
         </div>
         <div className=" space-x-1 navbar-end">
           <div>
-            <Link to="/login"
-              className="relative inline-flex items-center justify-center p-2 overflow-hidden tracking-tighter border rounded-lg group"
-            >
-              <span className="absolute w-0 h-0 transition-all duration-700 ease-out bg-green-500 rounded-full group-hover:w-56 group-hover:h-56"></span>
-              <span className="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent"></span>
-              <span className="relative">Login </span>
-            </Link>
-            <Link to="/register"
-              className="relative inline-flex items-center justify-center p-2 overflow-hidden tracking-tighter border rounded-lg group"
-            >
-              <span className="absolute w-0 h-0 transition-all duration-700 ease-out bg-green-500 rounded-full group-hover:w-56 group-hover:h-56"></span>
-              <span className="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent"></span>
-              <span className="relative">Register </span>
-            </Link>
+            {user ? (
+              <div className="flex gap-2 " >
+                <div
+                data-tooltip-id="my-tooltip"
+                data-tooltip-content={user?.displayName}
+                data-tooltip-place="bottom"
+                className="text-2xl"
+                 > <img className="rounded-full w-12" src={user?.photoURL}  alt="profile" /> </div>
+                 <Tooltip id="my-tooltip" />
+                <div
+                  onClick={handleLogOut}
+                  className="relative inline-flex items-center justify-center p-2 overflow-hidden tracking-tighter border rounded-lg group"
+                >
+                  <span className="absolute w-0 h-0 transition-all duration-700 ease-out bg-green-500 rounded-full group-hover:w-56 group-hover:h-56"></span>
+                  <span className="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent"></span>
+                  <span className="relative">Log Out </span>
+                </div>
+              </div>
+            ) : (
+              <div className="flex">
+                <Link
+                  to="/login"
+                  className="relative inline-flex items-center justify-center p-2 overflow-hidden tracking-tighter border rounded-lg group"
+                >
+                  <span className="absolute w-0 h-0 transition-all duration-700 ease-out bg-green-500 rounded-full group-hover:w-56 group-hover:h-56"></span>
+                  <span className="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent"></span>
+                  <span className="relative">Login </span>
+                </Link>
+                <Link
+                  to="/register"
+                  className="relative inline-flex items-center justify-center p-2 overflow-hidden tracking-tighter border rounded-lg group"
+                >
+                  <span className="absolute w-0 h-0 transition-all duration-700 ease-out bg-green-500 rounded-full group-hover:w-56 group-hover:h-56"></span>
+                  <span className="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent"></span>
+                  <span className="relative">Register </span>
+                </Link>
+              </div >
+            )}
           </div>
 
           <div>
             <label className="swap swap-rotate">
               {/* this hidden checkbox controls the state */}
-              <input 
-              onClick={handleTheme}
+              <input
+                onClick={handleTheme}
                 type="checkbox"
                 className="theme-controller"
                 value="night"
               />
 
               {/* sun icon */}
-              <LuSun className="swap-off fill-current w-10 h-10" > </LuSun>
+              <LuSun className="swap-off fill-current md:w-10 w-5 h-10"> </LuSun>
 
               {/* moon icon */}
-              <LuMoonStar className="swap-on fill-current w-10 h-10" > </LuMoonStar>
+              <LuMoonStar className="swap-on fill-current md:w-10 w-5 h-10">
+                {" "}
+              </LuMoonStar>
             </label>
           </div>
         </div>

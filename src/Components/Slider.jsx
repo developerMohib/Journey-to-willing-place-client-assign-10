@@ -22,7 +22,7 @@ const Slider = () => {
           </div>
           {/* Hero Section in slider */}
 
-          <div className="absolute flex justify-between transform -translate-y-1/2 left-10 right-10 bottom-3">
+          <div className="absolute flex justify-between transform -translate-y-1/2 lg:left-10 lg:right-10 left-5 right-5 md:bottom-3 bottom-1">
             <a href="#slide4" className="btn btn-circle">
               ❮
             </a>
@@ -45,7 +45,7 @@ const Slider = () => {
             </div>
           </div>
           {/* Hero Section in slider */}
-          <div className="absolute flex justify-between transform -translate-y-1/2 left-10 right-10 bottom-3">
+          <div className="absolute flex justify-between transform -translate-y-1/2 lg:left-10 lg:right-10 left-5 right-5 md:bottom-3 bottom-1">
             <a href="#slide1" className="btn btn-circle">
               ❮
             </a>
@@ -69,7 +69,7 @@ const Slider = () => {
             </div>
           </div>
           {/* Hero Section in slider */}
-          <div className="absolute flex justify-between transform -translate-y-1/2 left-10 right-10 bottom-3">
+          <div className="absolute flex justify-between transform -translate-y-1/2 lg:left-10 lg:right-10 left-5 right-5 md:bottom-3 bottom-1">
             <a href="#slide2" className="btn btn-circle">
               ❮
             </a>
@@ -93,7 +93,7 @@ const Slider = () => {
             </div>
           </div>
           {/* Hero Section in slider */}
-          <div className="absolute flex justify-between transform -translate-y-1/2 left-10 right-10 bottom-3">
+          <div className="absolute flex justify-between transform -translate-y-1/2 lg:left-10 left-5 lg:right-10 right-5 md:md:bottom-3 bottom-1">
             <a href="#slide3" className="btn btn-circle">
               ❮
             </a>
@@ -103,13 +103,12 @@ const Slider = () => {
           </div>
         </div>
         {/* These text */}
-        <div className="w-1/2 absolute left-[10%] top-1/3 ">
-          <h1 className="text-5xl font-bold text-white ">Hello there</h1>
+        <div className="lg:w-1/2 absolute lg:left-[10%] md:left-[7%] left-[5%] lg:top-1/3 md:top-[20%] top-[15%] ">
+          <h1 className="md:text-5xl text-3xl font-bold text-white ">Hello there</h1>
           {/* animation Text */}
-          <h1 className="mb-5 text-5xl font-bold text-white " style={{ paddingTop: '1rem',paddingBottom: '1rem', margin: 'auto 0' }}>
-        Life is simple{' '}
-        <span style={{ color: 'red', fontWeight: 'bold' }}>
-          {/* Style will be inherited from the parent element */}
+          <h1 className="mb-5 md:text-5xl text-3xl font-bold text-white md:py-4 m-auto" >
+        Life is simple
+        <span className="text-red-600 font-bold" >
           <Typewriter
             words={['Tour', 'Sleep', 'Journey', 'Repeat!']}
             loop={Infinity}
@@ -125,7 +124,6 @@ const Slider = () => {
           <p className="mb-5 text-white">
           Exploring new places fuels the souls thirst for adventure, unveiling hidden wonders and forging unforgettable memories. Across landscapes and cultures, we discover the beauty of diversity, weaving our own unique narrative in the fabric of the world. With each journey.
           </p>
-          {/* <button className="btn btn-primary">Get Started</button> */}
           <div>
             <Link
               className="relative inline-flex items-center justify-center px-10 py-4 overflow-hidden font-mono font-medium tracking-tighter text-white border rounded-lg group"
