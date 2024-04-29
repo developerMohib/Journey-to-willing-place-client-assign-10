@@ -54,9 +54,15 @@ const Navbar = () => {
       <NavLink className="px-1 py-1 mx-1 " to="/addSpot">
         Add Tourists Spot
       </NavLink>
-      <NavLink className="px-1 py-1 mx-1 " to="/myList">
+      {
+        user && (
+          <>
+          <NavLink className="px-1 py-1 mx-1 " to="/myList">
         My List
       </NavLink>
+          </>
+        )
+      }
       <NavLink className="px-1 py-1 mx-1 " to="/contact">
         Contact Us
       </NavLink>

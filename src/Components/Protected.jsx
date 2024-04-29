@@ -1,15 +1,13 @@
 import { useContext } from "react";
 import { AuthCustomContext } from "../MainProvider/MainProvider";
-import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 import PropTypes from 'prop-types';
-
 
 const Protected = ({children}) => {
     const {user, loading} = useContext(AuthCustomContext);
      const location = useLocation() ;
-     const navigate = useNavigate(); 
-     
-     console.log(navigate, 'location');
+    //  console.log(location)
+
      if(loading) {
         return <span className="text-center" > Loading.... </span>
      }

@@ -105,6 +105,7 @@ const Slider = () => {
         {/* These text */}
         <div className="lg:w-1/2 absolute lg:left-[10%] md:left-[7%] left-[5%] lg:top-1/3 md:top-[20%] top-[15%] ">
           <h1 className="md:text-5xl text-3xl font-bold text-white ">Hello there</h1>
+          
           {/* animation Text */}
           <h1 className="mb-5 md:text-5xl text-3xl font-bold text-white md:py-4 m-auto" >
         Life is simple{" "}
@@ -121,6 +122,7 @@ const Slider = () => {
         </span>
       </h1>
           {/* animation Text */}
+
           <p className="mb-5 text-white">
           Exploring new places fuels the souls thirst for adventure, unveiling hidden wonders and forging unforgettable memories. Across landscapes and cultures, we discover the beauty of diversity, weaving our own unique narrative in the fabric of the world. With each journey.
           </p>

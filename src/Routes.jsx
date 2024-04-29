@@ -8,8 +8,10 @@ import AddSpots from "./Pages/AddSpots";
 import MyList from "./Pages/MyList";
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";
+import Private from "./Components/Private"
 import Protected from "./Components/Protected";
 import ViewDetails from "./Components/ViewDetails";
+import Update from "./Components/Update";
 
 export const router = createBrowserRouter([
     {
@@ -42,12 +44,17 @@ export const router = createBrowserRouter([
         },
         {
           path: "/myList",
-          element: <MyList> </MyList>,
+          element: <Private> <MyList> </MyList> </Private> ,
           loader : () => fetch(`https://journey-beck.vercel.app/touristSpot`)
         },
         {
           path: "/login",
           element: <Login> </Login>,
+        },
+        {
+          path: "/update",
+          element: <Update> </Update> ,
+          loader : () => fetch(`https://journey-beck.vercel.app/touristSpot`)
         },
         {
           path: "/register",

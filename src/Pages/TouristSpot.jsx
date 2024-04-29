@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { AiOutlineLike } from "react-icons/ai";
 import { FaComments, FaRegBookmark } from "react-icons/fa";
 import { IoMdShareAlt } from "react-icons/io";
@@ -5,6 +6,7 @@ import { Link, useLoaderData } from "react-router-dom";
 
 const TouristSpot = () => {
   const allSpots = useLoaderData();
+  const [spotLen, setSpotLen] = useState(6)
   return (
     <div>
       <div>
@@ -18,25 +20,33 @@ const TouristSpot = () => {
         </div>
         {/* Sorting */}
         <div className="text-center mt-10 ">
-          <div className="md:join ">
-            <select className="select select-bordered lg:w-72 md:w-56 w-52 join-item">
+          <div className="md:join w-[90%] ">
+            <select
+              className="select select-bordered w-[90%] block mx-auto join-item"
+            >
               <option defaultValue>Average Cost</option>
-              <option>Assending</option>
+              <option value="averageCost">Assending</option>
               <option>Dissending</option>
             </select>
-            <select className="select select-bordered md:w-72 w-52 join-item">
+
+            <select className="select select-bordered w-[90%] block mx-auto my-3 join-item">
               <option defaultValue>Average Vistior</option>
-              <option>Assending</option>
+              <option value="averageVisitor">Assending</option>
               <option>Dissending</option>
             </select>
-            <select className="select select-bordered md:w-72 w-52 join-item">
-              <option defaultValue>Seasonality</option>
+
+            <select className="select select-bordered w-[90%] block mx-auto join-item">
+              <option value="seasonality" defaultValue>
+                Seasonality
+              </option>
               <option>Winter</option>
               <option>Summer</option>
               <option>Rainy</option>
             </select>
             <div className="">
-              <button className="bg-green-500 btn join-item">
+              <button
+                className="bg-green-500 btn md:w-36 join-item"
+              >
                 Find Your Hope{" "}
               </button>
             </div>
@@ -45,7 +55,7 @@ const TouristSpot = () => {
       </div>
       {/* card */}
       <div className="lg:grid md:grid grid-cols-3 gap-8 mt-16 mb-8 lg:p-8 md:p-4 p-1 ">
-        {allSpots.map((spot) => (
+        {allSpots.slice(0, spotLen).map((spot) => (
           <div key={spot?._id}>
             <div className="flex flex-col p-3 space-y-6 overflow-hidden rounded-lg shadow-md bg-gray-50 text-gray-800">
               <div>
@@ -142,11 +152,11 @@ const TouristSpot = () => {
         ))}
       </div>
       
-<div className="text-center mb-8">
+<div className={`text-center mb-8 ${spotLen === allSpots.length && 'hidden' } `}>
         <div className="bg-green-500  relative inline-flex items-center justify-center px-10 py-4 overflow-hidden font-mono font-medium tracking-tighter border rounded-lg group">
           <span className="absolute w-0 h-0 transition-all duration-500 ease-out bg-green-400 rounded-full group-hover:w-56 group-hover:h-56"></span>
           <span className="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-gray-700"></span>
-          <span className="relative">Load More </span>
+          <span onClick={() => setSpotLen(allSpots.length)} className="relative">Load More </span>
         </div>
       </div>
     </div>

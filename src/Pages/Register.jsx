@@ -2,11 +2,13 @@ import { useContext, useState } from "react";
 import { FaFaceFrown, FaFaceGrin, FaRegCircleUser } from "react-icons/fa6";
 import { AuthCustomContext } from "../MainProvider/MainProvider";
 import Swal from "sweetalert2";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [showPass, setShowPass] = useState(false);
   const { registerUser,updateProfileFromUser } = useContext(AuthCustomContext);
+  const location = useLocation() ;
+  const Navigate = useNavigate(); 
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -34,6 +36,7 @@ const Register = () => {
           });
           return ;
         })
+        Navigate(location?.state ? location.state : "/")
       })
       .catch((error) => {
         const errorMessage = error.message;

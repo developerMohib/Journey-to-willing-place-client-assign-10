@@ -1,13 +1,15 @@
 import { useContext, useState } from "react";
 import { FaGithub, FaGoogle, FaTwitter } from "react-icons/fa";
 import { FaFaceFrown, FaFaceGrin } from "react-icons/fa6";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthCustomContext } from "../MainProvider/MainProvider";
 import Swal from "sweetalert2";
 
 const Login = () => {
   const [showPass, setShowPass] = useState(false);
   const {user, signInGoogle,logInUser, signInGithub} = useContext(AuthCustomContext);
+  const location = useLocation() ;
+  const Navigate = useNavigate();
 
   const handleSignIn = (e) => {
     e.preventDefault(); 
@@ -31,6 +33,7 @@ const Login = () => {
            timer: 1500
          });
        }
+       Navigate(location?.pathname ? location.state : '/' );
      })
      .catch((error) => {
        console.error(error.message, 'login page');

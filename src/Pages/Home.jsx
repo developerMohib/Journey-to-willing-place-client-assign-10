@@ -4,10 +4,53 @@ import Slider from "../Components/Slider";
 import { IoMdShareAlt } from "react-icons/io";
 import { FaComments, FaRegBookmark } from "react-icons/fa";
 import { AiOutlineLike } from "react-icons/ai";
+import { useState } from "react";
 
 const Home = () => {
   const sixSpot = useLoaderData();
-  console.log(sixSpot, "length ", sixSpot.length);
+const [sorting, setSorting] = useState(sixSpot)
+
+  const handleSorting = (e) => {
+    const value = e.target.value;
+    console.log(value, "value");
+    // filter kore cost ana
+
+    // let sortedArray = [...sixSpot];
+
+    // if(selectedSortBy === 'averageCost'){
+    //   sortedArray.sort((a, b) => a.average_cost - b.average_cost);
+    // }
+    // if (selectedSortBy === 'averageVisitor') {
+    //   sortedArray.sort((a, b) => a.averageVisitor - b.averageVisitor);
+    // }
+    // if (selectedSortBy === 'seasonality') {
+    //   sortedArray.sort((a, b) => a.seasonality.localeCompare(b.seasonality));
+    // }
+    // setOnSort(sortedArray);
+  };
+  
+  const handleSelectChange = (e) => {
+    const value = e.target.value;
+    
+    const newSpot = sixSpot.sort((p1, p2) => {
+      const cost1 = parseInt(p1.average_cost);
+      const cost2 = parseInt(p2.average_cost);
+      
+    
+      
+
+      if (cost1 < cost2) {
+        setSorting(newSpot);
+      } 
+      else {
+        return 0;
+      }
+
+    });
+    console.log(newSpot, value, "paici");
+  };
+
+  // console.log(sortedArray, 'taka')
   return (
     <div>
       <Slider> </Slider>
@@ -22,25 +65,35 @@ const Home = () => {
         </div>
         {/* Sorting */}
         <div className="text-center mt-10 ">
-          <div className="md:join ">
-            <select className="select select-bordered lg:w-72 md:w-56 w-52 join-item">
+          <div className="md:join w-[90%] ">
+            <select
+              onChange={handleSelectChange}
+              className="select select-bordered w-[90%] block mx-auto join-item"
+            >
               <option defaultValue>Average Cost</option>
-              <option>Assending</option>
+              <option value="averageCost">Assending</option>
               <option>Dissending</option>
             </select>
-            <select className="select select-bordered md:w-72 w-52 join-item">
+
+            <select className="select select-bordered w-[90%] block mx-auto my-3 join-item">
               <option defaultValue>Average Vistior</option>
-              <option>Assending</option>
+              <option value="averageVisitor">Assending</option>
               <option>Dissending</option>
             </select>
-            <select className="select select-bordered md:w-72 w-52 join-item">
-              <option defaultValue>Seasonality</option>
+
+            <select className="select select-bordered w-[90%] block mx-auto join-item">
+              <option value="seasonality" defaultValue>
+                Seasonality
+              </option>
               <option>Winter</option>
               <option>Summer</option>
               <option>Rainy</option>
             </select>
             <div className="">
-              <button className="bg-green-500 btn join-item">
+              <button
+                onClick={handleSorting}
+                className="bg-green-500 btn md:w-36 join-item"
+              >
                 Find Your Hope{" "}
               </button>
             </div>
@@ -48,9 +101,10 @@ const Home = () => {
         </div>
       </div>
       {/* card */}
+      {/* card to card  */}
 
       <div className="lg:grid md:grid grid-cols-3 gap-8 mt-16 mb-8 lg:p-8 md:p-4 p-1 ">
-        {sixSpot.slice(0, 6).map((spot) => (
+        {sorting.slice(0, 6).map((spot) => (
           <div key={spot?._id}>
             <div className="flex flex-col p-3 space-y-6 overflow-hidden rounded-lg shadow-md bg-gray-50 text-gray-800">
               <div>
@@ -66,8 +120,12 @@ const Home = () => {
                 </div>
 
                 <div className="px-3">
+                  <p>
+                    {" "}
+                    <span>Avarege Cost : </span> {spot.average_cost}{" "}
+                  </p>
                   <h2 className="mb-1 text-xl font-semibold">
-                    {spot?.photoTitle}
+                    {spot?.photoTitle.slice(0, 70)}
                   </h2>
                   <p className="text-sm text-gray-600">
                     {spot?.details.slice(0, 200)}
@@ -145,14 +203,6 @@ const Home = () => {
             </div>
           </div>
         ))}
-      </div>
-
-      <div className="text-center mb-8">
-        <div className="bg-green-500  relative inline-flex items-center justify-center px-10 py-4 overflow-hidden font-mono font-medium tracking-tighter border rounded-lg group">
-          <span className="absolute w-0 h-0 transition-all duration-500 ease-out bg-green-400 rounded-full group-hover:w-56 group-hover:h-56"></span>
-          <span className="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-gray-700"></span>
-          <span className="relative">Load More </span>
-        </div>
       </div>
       <Country> </Country>
     </div>

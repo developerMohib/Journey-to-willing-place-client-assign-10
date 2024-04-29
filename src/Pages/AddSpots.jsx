@@ -203,7 +203,7 @@ const AddSpots = () => {
                   id=""
                   cols="30"
                   rows="3"
-                  placeholder="About the place"
+                  placeholder="Short Description about the place"
                   type="textarea"
                 ></textarea>
               </label>
