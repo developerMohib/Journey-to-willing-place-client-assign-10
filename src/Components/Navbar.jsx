@@ -10,10 +10,8 @@ import { Tooltip } from 'react-tooltip'
 
 const Navbar = () => {
   const [theme, setTheme] = useState("light");
-  const [open, setOpen] = useState(false);
+    const [open, setOpen] = useState(false);
   const { user, logOut } = useContext(AuthCustomContext);
-  // console.log(user, 'from navvar')
-  // console.log(user?.photoURL, 'from ----navvar')
 
   const handleLogOut = () => {
     logOut()
@@ -24,6 +22,7 @@ const Navbar = () => {
       console.error(error);
     });
   };
+
   useEffect(() => {
     const localTheme = localStorage.getItem("theme");
     setTheme(localTheme);

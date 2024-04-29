@@ -29,11 +29,12 @@ export const router = createBrowserRouter([
         {
           path: "/touristSpot",
           element: <TouristSpot> </TouristSpot>,
+          loader : () => fetch(`https://journey-beck.vercel.app/touristSpot`)
         },
         {
-          path: "/viewDetails",
+          path: "/viewDetails/:id",
           element: <Protected> <ViewDetails> </ViewDetails> </Protected>,
-          
+          loader: () => fetch(`https://journey-beck.vercel.app/touristSpot`)
         },
         {
           path: "/addSpot",
@@ -42,6 +43,7 @@ export const router = createBrowserRouter([
         {
           path: "/myList",
           element: <MyList> </MyList>,
+          loader : () => fetch(`https://journey-beck.vercel.app/touristSpot`)
         },
         {
           path: "/login",

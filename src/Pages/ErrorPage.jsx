@@ -7,6 +7,9 @@ const ErrorPage = () => {
       <section className="flex items-center h-full sm:p-16 dark:bg-gray-50 dark:text-gray-800">
         <div className="container flex flex-col items-center justify-center px-5 mx-auto my-8 space-y-8 text-center sm:max-w-md">
           <IoSadOutline className="text-8xl" />
+          <h2 className="mb-8 font-extrabold text-9xl text-gray-400">
+				<span className="sr-only">Error</span>404
+			</h2>
           <p className="text-3xl">Looks like You are currently Wrong Path</p>
           <NavLink
             to="/"
@@ -23,3 +26,4 @@ const ErrorPage = () => {
 };
 
 export default ErrorPage;
+

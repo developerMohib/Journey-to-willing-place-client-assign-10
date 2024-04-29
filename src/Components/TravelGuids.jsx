@@ -30,15 +30,18 @@ const TravelGuids = () => {
                 villages. Their colorful culture and living style are surely an
                 unexplored experience for the visitors.
               </p>
-			<div className="my-5" >
-			<Link to="/register"
-              className="relative inline-flex items-center justify-center p-2 overflow-hidden tracking-tighter border rounded-lg group"
-            >
-              <span className="absolute w-0 h-0 transition-all duration-700 ease-out bg-green-500 rounded-full group-hover:w-56 group-hover:h-56"></span>
-              <span className="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent"></span>
-              <span className=" flex items-center justify-between gap-5 relative">More Information <FaArrowRightLong/> </span>
-            </Link>
-			</div>
+              <div className="my-5">
+                <Link
+                  to="/register"
+                  className="relative inline-flex items-center justify-center p-2 overflow-hidden tracking-tighter border rounded-lg group"
+                >
+                  <span className="absolute w-0 h-0 transition-all duration-700 ease-out bg-green-500 rounded-full group-hover:w-56 group-hover:h-56"></span>
+                  <span className="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent"></span>
+                  <span className=" flex items-center justify-between gap-5 relative">
+                    More Information <FaArrowRightLong />{" "}
+                  </span>
+                </Link>
+              </div>
               <div className="flex items-center justify-between pt-2">
                 <div className="flex space-x-2">
                   <svg

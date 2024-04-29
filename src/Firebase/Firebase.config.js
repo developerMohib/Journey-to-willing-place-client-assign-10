@@ -12,7 +12,6 @@ const firebaseConfig = {
   messagingSenderId: import.meta.env.VITE_MESSAGINGSENDERID,
   appId: import.meta.env.VITE_APPID,
 };
-console.log(import.meta.env.VITE_APIKEY , 'ise for aser malfdkj' )
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
