@@ -9,9 +9,6 @@ import { useState } from "react";
 const Home = () => {
   const sixSpot = useLoaderData();
   const [sortBy, setSortBy] = useState(null);
-  
-//   console.log(sixSpot)
-// const [sorting, setSorting] = useState(sixSpot)
 const handleSortChange = (event) => {
   setSortBy(event.target.value);
 }
@@ -29,34 +26,6 @@ const sortedData = [...sixSpot].sort((p1, p2) => {
       return 0;
   }
 });
-
-
-
-  
-  // const handleSelectChange = (e) => {
-  //   const value = e.target.value;
-
- 
-    
-  //   const newSpot = sixSpot.sort((p1, p2) => {
-  //     const cost1 = parseInt(p1.average_cost);
-  //     const cost2 = parseInt(p2.average_cost);
-      
-    
-      
-
-  //     if (cost1 < cost2) {
-  //       setSorting(newSpot);
-  //     } 
-  //     else {
-  //       return 0;
-  //     }
-
-  //   });
-  //   console.log(newSpot, value, "paici");
-  // };
-  
-
   console.log(sortedData, 'taka')
   return (
     

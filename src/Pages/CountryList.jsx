@@ -36,8 +36,13 @@ const CountryList = () => {
             </div>
 
             <div className="px-3">
+              <p> <span>seasonality : </span> {data.seasonality} </p>
               <h2 className="mb-1 text-xl font-semibold">{data?.country_Name}</h2>
               <p className="text-sm text-gray-600">{data?.details}</p>
+            </div>
+            <div className="flex justify-between ">
+              <p> <span>location : </span> {data.location} </p>
+              <p> <span>Cost : </span> {data.average_cost} </p>
             </div>
             <div>
               <Link

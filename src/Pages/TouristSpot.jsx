@@ -6,7 +6,31 @@ import { Link, useLoaderData } from "react-router-dom";
 
 const TouristSpot = () => {
   const allSpots = useLoaderData();
-  const [spotLen, setSpotLen] = useState(6)
+  // const [spotLen, setSpotLen] = useState(6)
+
+  // const sixSpot = useLoaderData();
+  const [sortBy, setSortBy] = useState(null);
+const handleSortChange = (event) => {
+  setSortBy(event.target.value);
+}
+
+const sortedData = [...allSpots].sort((p1, p2) => {
+  
+  const cost1 = parseInt(p1.average_cost);
+  const cost2 = parseInt(p2.average_cost);
+
+  if (sortBy === "ascending") {
+      return cost1 - cost2;
+  } else if (sortBy === "descending") {
+      return cost2 - cost1;
+  } else {
+      return 0;
+  }
+});
+
+
+
+
   return (
     <div>
       <div>
@@ -22,17 +46,19 @@ const TouristSpot = () => {
         <div className="text-center mt-10 ">
           <div className="md:join w-[90%] ">
             <select
+              onChange={handleSortChange}
               className="select select-bordered w-[90%] block mx-auto join-item"
             >
               <option defaultValue>Average Cost</option>
-              <option value="averageCost">Assending</option>
-              <option>Dissending</option>
+                <option value="descending">Ascending</option>
+              <option value="ascending">Descending </option>
             </select>
 
-            <select className="select select-bordered w-[90%] block mx-auto my-3 join-item">
+            <select
+            onChange={handleSortChange} className="select select-bordered w-[90%] block mx-auto my-3 join-item">
               <option defaultValue>Average Vistior</option>
-              <option value="averageVisitor">Assending</option>
-              <option>Dissending</option>
+                <option value="descending">Ascending</option>
+              <option value="ascending">Descending </option>
             </select>
 
             <select className="select select-bordered w-[90%] block mx-auto join-item">
@@ -55,20 +81,10 @@ const TouristSpot = () => {
       </div>
       {/* card */}
       <div className="lg:grid md:grid grid-cols-3 gap-8 mt-16 mb-8 lg:p-8 md:p-4 p-1 ">
-        {allSpots.slice(0, spotLen).map((spot) => (
+        {allSpots.map((spot) => (
           <div key={spot?._id}>
             <div className="flex flex-col p-3 space-y-6 overflow-hidden rounded-lg shadow-md bg-gray-50 text-gray-800">
               <div>
-                {/* <div className="relative">
-                  <img
-                    src={spot?.photoURL}
-                    alt={spot?.tourists_spot_name}
-                    className="object-cover w-full mb-4 bg-gray-500"
-                  />
-                  <h2 className="mb-1 text-4xl font-bold text-white absolute bottom-3 left-3 ">
-                    {spot?.tourists_spot_name}
-                  </h2>
-                </div> */}
                 <div className="relative ">
               <span className="indicator-item absolute right-3 translate-x-8 translate-y-3 rotate-45 badge badge-secondary">
               {spot?.seasonality}
@@ -178,13 +194,13 @@ const TouristSpot = () => {
         ))}
       </div>
       
-<div className={`text-center mb-8 ${spotLen === allSpots.length && 'hidden' } `}>
+{/* <div className={`text-center mb-8 ${spotLen === allSpots.length && 'hidden' } `}>
         <div className="bg-green-500  relative inline-flex items-center justify-center px-10 py-4 overflow-hidden font-mono font-medium tracking-tighter border rounded-lg group">
           <span className="absolute w-0 h-0 transition-all duration-500 ease-out bg-green-400 rounded-full group-hover:w-56 group-hover:h-56"></span>
           <span className="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-gray-700"></span>
-          <span onClick={() => setSpotLen(allSpots.length)} className="relative">Load More </span>
+          <span onClick={() => setSpotLen(sortedData.length)} className="relative">Load More </span>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
