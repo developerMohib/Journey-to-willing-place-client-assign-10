@@ -22,7 +22,7 @@ export const router = createBrowserRouter([
         {
             path: "/",
             element: <Home> </Home>,
-            loader : () => fetch(`https://journey-beck.vercel.app/touristSpot`)
+            loader : () => fetch(`http://localhost:5000/touristSpot`)
         },
         {
           path: "/contact",
@@ -31,12 +31,12 @@ export const router = createBrowserRouter([
         {
           path: "/touristSpot",
           element: <TouristSpot> </TouristSpot>,
-          loader : () => fetch(`https://journey-beck.vercel.app/touristSpot`)
+          loader : () => fetch(`http://localhost:5000/touristSpot`)
         },
         {
           path: "/viewDetails/:id",
           element: <Protected> <ViewDetails> </ViewDetails> </Protected>,
-          loader: () => fetch(`https://journey-beck.vercel.app/touristSpot`)
+          loader: () => fetch(`http://localhost:5000/touristSpot`)
         },
         {
           path: "/addSpot",
@@ -45,16 +45,16 @@ export const router = createBrowserRouter([
         {
           path: "/myList",
           element: <Private> <MyList> </MyList> </Private> ,
-          loader : () => fetch(`https://journey-beck.vercel.app/touristSpot`)
+          loader : () => fetch(`http://localhost:5000/touristSpot`)
         },
         {
           path: "/login",
           element: <Login> </Login>,
         },
         {
-          path: "/update",
+          path: "/update/:id",
           element: <Update> </Update> ,
-          loader : () => fetch(`https://journey-beck.vercel.app/touristSpot`)
+          loader : ({params}) => fetch(`http://localhost:5000/touristSpot/${params.id}`)
         },
         {
           path: "/register",

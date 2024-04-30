@@ -9,7 +9,7 @@ const Protected = ({children}) => {
     //  console.log(location)
 
      if(loading) {
-        return <span className="text-center" > Loading.... </span>
+        return <span className="loading loading-bars loading-lg"></span>
      }
      if(user){
         return children ;

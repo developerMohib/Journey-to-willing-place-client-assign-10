@@ -1,8 +1,13 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData} from "react-router-dom";
 import Swal from "sweetalert2";
+// import Swal from "sweetalert2";
 
 const Update = () => {
-  const upSpot = useLoaderData()
+  const upSpot = useLoaderData();
+
+  const {tourists_spot_name,  _id} = upSpot;
+  console.log(upSpot, _id,'id')
+
   const handleAdd = (e) => {
     e.preventDefault();
         const form = e.target;
@@ -19,7 +24,7 @@ const Update = () => {
     const updateSpot = {countryName, spotName, location, cost, seasonality, traveTime, photoTitle, visitor, photoUrl,details}
 
     
-    fetch(`http://localhost:5000/coffee/${upSpot._id}`, {
+    fetch(`http://localhost:5000/touristSpot/${_id}`, {
             method: "PUT",
             headers: {
                 "Content-type": "application/json"
@@ -29,15 +34,14 @@ const Update = () => {
         .then(res => res.json())
         .then(data => {
             console.log(data)
-            // if(data.modifiedCount > 0){
-            //     // alert('Coffee added');
-            //     Swal.fire({
-            //         title: 'Success!',
-            //         text: 'You updated a Coffee',
-            //         icon: 'success',
-            //         confirmButtonText: 'Cool'
-            //       })
-            // }
+            if(data.modifiedCount > 0){
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'You updated a Spot',
+                    icon: 'success',
+                    confirmButtonText: 'Cool'
+                  })
+            }
         })
   }
 
@@ -45,6 +49,7 @@ const Update = () => {
         <div>
           <div>
             <h1 className="text-center font-bold text-2xl my-10 ">Update Tourists Spot</h1>
+            <h1 className="text-center font-bold text-2xl my-10 "> {tourists_spot_name} </h1>
             <div className="bg-base-200 p-10 ">
               <form onSubmit={handleAdd} >
                 {/* form coutry name and spot name row */}

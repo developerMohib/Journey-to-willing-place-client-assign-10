@@ -9,6 +9,7 @@ const Register = () => {
   const { registerUser,updateProfileFromUser } = useContext(AuthCustomContext);
   const location = useLocation() ;
   const Navigate = useNavigate(); 
+  
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -19,6 +20,27 @@ const Register = () => {
     const password = formV.password.value;
 
     console.log(name, email, photoUrl);
+
+    
+  if (password.length < 6) {
+    return Swal.fire("Password should be at least 6 characters long!");
+}
+
+else if (!/[A-Z]/.test(password)) {
+    return Swal.fire("Your password must contain at least one capital letter.!"); 
+}
+
+else if (!/[a-z]/.test(password)) {
+    return Swal.fire("Your password must contain at least one lowercase letter.!"); 
+}
+
+else if(!/\d/.test(password)) {
+    return Swal.fire("our password must contain at least one digit.!"); 
+}
+
+  Navigate("/");
+  
+
 
     // Register User
     registerUser(email, password)

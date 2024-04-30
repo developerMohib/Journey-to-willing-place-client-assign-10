@@ -40,7 +40,7 @@ const Login = () => {
        Swal.fire({
          icon: 'error',
          title: "Ooop...!",
-         text: 'This Email already used!.'
+         text: 'Your Email or password should macth!.'
        });
      });
   }
