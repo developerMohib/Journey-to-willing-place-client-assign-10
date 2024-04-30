@@ -8,50 +8,58 @@ import { useState } from "react";
 
 const Home = () => {
   const sixSpot = useLoaderData();
-const [sorting, setSorting] = useState(sixSpot)
-
-  const handleSorting = (e) => {
-    const value = e.target.value;
-    console.log(value, "value");
-    // filter kore cost ana
-
-    // let sortedArray = [...sixSpot];
-
-    // if(selectedSortBy === 'averageCost'){
-    //   sortedArray.sort((a, b) => a.average_cost - b.average_cost);
-    // }
-    // if (selectedSortBy === 'averageVisitor') {
-    //   sortedArray.sort((a, b) => a.averageVisitor - b.averageVisitor);
-    // }
-    // if (selectedSortBy === 'seasonality') {
-    //   sortedArray.sort((a, b) => a.seasonality.localeCompare(b.seasonality));
-    // }
-    // setOnSort(sortedArray);
-  };
+  const [sortBy, setSortBy] = useState(null);
   
-  const handleSelectChange = (e) => {
-    const value = e.target.value;
+//   console.log(sixSpot)
+// const [sorting, setSorting] = useState(sixSpot)
+const handleSortChange = (event) => {
+  setSortBy(event.target.value);
+}
+
+const sortedData = [...sixSpot].sort((p1, p2) => {
+  
+  const cost1 = parseInt(p1.average_cost);
+  const cost2 = parseInt(p2.average_cost);
+
+  if (sortBy === "ascending") {
+      return cost1 - cost2;
+  } else if (sortBy === "descending") {
+      return cost2 - cost1;
+  } else {
+      return 0;
+  }
+});
+
+
+
+  
+  // const handleSelectChange = (e) => {
+  //   const value = e.target.value;
+
+ 
     
-    const newSpot = sixSpot.sort((p1, p2) => {
-      const cost1 = parseInt(p1.average_cost);
-      const cost2 = parseInt(p2.average_cost);
+  //   const newSpot = sixSpot.sort((p1, p2) => {
+  //     const cost1 = parseInt(p1.average_cost);
+  //     const cost2 = parseInt(p2.average_cost);
       
     
       
 
-      if (cost1 < cost2) {
-        setSorting(newSpot);
-      } 
-      else {
-        return 0;
-      }
+  //     if (cost1 < cost2) {
+  //       setSorting(newSpot);
+  //     } 
+  //     else {
+  //       return 0;
+  //     }
 
-    });
-    console.log(newSpot, value, "paici");
-  };
+  //   });
+  //   console.log(newSpot, value, "paici");
+  // };
+  
 
-  // console.log(sortedArray, 'taka')
+  console.log(sortedData, 'taka')
   return (
+    
     <div>
       <Slider> </Slider>
       <div>
@@ -67,18 +75,19 @@ const [sorting, setSorting] = useState(sixSpot)
         <div className="text-center mt-10 ">
           <div className="md:join w-[90%] ">
             <select
-              onChange={handleSelectChange}
+              onChange={handleSortChange}
               className="select select-bordered w-[90%] block mx-auto join-item"
             >
               <option defaultValue>Average Cost</option>
-              <option value="averageCost">Assending</option>
-              <option>Dissending</option>
+                <option value="descending">Ascending</option>
+              <option value="ascending">Descending </option>
             </select>
 
-            <select className="select select-bordered w-[90%] block mx-auto my-3 join-item">
+            <select
+            onChange={handleSortChange} className="select select-bordered w-[90%] block mx-auto my-3 join-item">
               <option defaultValue>Average Vistior</option>
-              <option value="averageVisitor">Assending</option>
-              <option>Dissending</option>
+                <option value="descending">Ascending</option>
+              <option value="ascending">Descending </option>
             </select>
 
             <select className="select select-bordered w-[90%] block mx-auto join-item">
@@ -91,7 +100,6 @@ const [sorting, setSorting] = useState(sixSpot)
             </select>
             <div className="">
               <button
-                onClick={handleSorting}
                 className="bg-green-500 btn md:w-36 join-item"
               >
                 Find Your Hope{" "}
@@ -104,7 +112,7 @@ const [sorting, setSorting] = useState(sixSpot)
       {/* card to card  */}
 
       <div className="lg:grid md:grid grid-cols-3 gap-8 mt-16 mb-8 lg:p-8 md:p-4 p-1 ">
-        {sorting.slice(0, 6).map((spot) => (
+        {sortedData.slice(0, 6).map((spot) => (
           <div key={spot?._id}>
             <div className="flex flex-col p-3 space-y-6 overflow-hidden rounded-lg shadow-md bg-gray-50 text-gray-800">
               <div>
@@ -204,6 +212,7 @@ const [sorting, setSorting] = useState(sixSpot)
           </div>
         ))}
       </div>
+
       <Country> </Country>
     </div>
   );

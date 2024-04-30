@@ -25,7 +25,7 @@ const AddSpots = () => {
     
     console.log(spotInfo );
     // data send to server 
-    fetch(`http://localhost:5000/touristSpot`, {
+    fetch(`https://journey-beck.vercel.app/touristSpot`, {
             method: "POST",
             headers: {
                 "Content-type": "application/json"

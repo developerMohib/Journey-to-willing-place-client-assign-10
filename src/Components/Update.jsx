@@ -24,7 +24,7 @@ const Update = () => {
     const updateSpot = {countryName, spotName, location, cost, seasonality, traveTime, photoTitle, visitor, photoUrl,details}
 
     
-    fetch(`http://localhost:5000/touristSpot/${_id}`, {
+    fetch(`https://journey-beck.vercel.app/touristSpot/${_id}`, {
             method: "PUT",
             headers: {
                 "Content-type": "application/json"

@@ -54,6 +54,9 @@ const Navbar = () => {
       <NavLink className="px-1 py-1 mx-1 " to="/addSpot">
         Add Tourists Spot
       </NavLink>
+      <NavLink className="px-1 py-1 mx-1 " to="/country">
+        Country Spot
+      </NavLink>
       {
         user && (
           <>

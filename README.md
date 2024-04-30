@@ -1,8 +1,24 @@
-# Tourism Management website
+# [Tourism Management website](https://travelling-1eb3c.web.app/)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Category : Southeast Asia
 
-Currently, two official plugins are available:
+# [live link ](https://travelling-1eb3c.web.app/) (https://travelling-1eb3c.web.app/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# Type: B9 A10 Type-01 Requirements
+
+Five bulet point about the site .
+ - Providing detailed information about destinations, including attractions, local culture, transportation options, and safety tips,
+ - helps users plan their trips effectively and ensures a memorable travel experience.
+ - traveling website can offer personalized recommendations for destinations, 
+ - accommodations, and activities, enhancing the user's journey and satisfaction.
+ - accommodations, and activities, enhancing the user's journey and satisfaction.
+
+Currently, two official plugins are available
+- Usage Packages
+-  Tailwind CSS
+-  DaisyUI
+-  React Icons
+-  react-simple-typewriterreact-tooltip
+-  firebase
+-  propTypes
+-  sweetalert2

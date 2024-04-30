@@ -59,7 +59,7 @@ const TouristSpot = () => {
           <div key={spot?._id}>
             <div className="flex flex-col p-3 space-y-6 overflow-hidden rounded-lg shadow-md bg-gray-50 text-gray-800">
               <div>
-                <div className="relative">
+                {/* <div className="relative">
                   <img
                     src={spot?.photoURL}
                     alt={spot?.tourists_spot_name}
@@ -68,16 +68,42 @@ const TouristSpot = () => {
                   <h2 className="mb-1 text-4xl font-bold text-white absolute bottom-3 left-3 ">
                     {spot?.tourists_spot_name}
                   </h2>
-                </div>
+                </div> */}
+                <div className="relative ">
+              <span className="indicator-item absolute right-3 translate-x-8 translate-y-3 rotate-45 badge badge-secondary">
+              {spot?.seasonality}
+              </span>
+              <img
+                src={spot?.photoUrl}
+                alt={spot?.tourists_spot_name}
+                className="object-cover w-full mb-4 bg-gray-500"
+              />
+              <h2 className="mb-1 text-4xl font-bold text-white absolute bottom-3 left-3 ">
+              {spot?.tourists_spot_name}
+              </h2>
+            </div>
+
+
 
                 <div className="px-3">
+                  <div className="flex my-2 justify-between" >
+                  <p> <span className="font-semibold my-1 " >Average Cost : </span> {spot?.average_cost} </p>
+                  <p> <span className="font-semibold my-1 " > Visitors : </span> {spot?.totaVisitorsPerYear} </p>
+                  </div>
                   <h2 className="mb-1 text-xl font-semibold">
                     {spot?.photoTitle}
                   </h2>
                   <p className="text-sm text-gray-600">
                     {spot?.details.slice(0, 200)}
                   </p>
+                  <div className="flex my-2 justify-between" >
+                  <p className="text-sm text-gray-600"> <span className="font-semibold my-1 " > Travel Time : </span>
+                    {spot?.travel_time}
+                  </p>
+                  <p> <span className="font-semibold my-1 " > Seasonality : </span> {spot?.seasonality}</p>
+                  </div>
                 </div>
+
                 <div>
                   <Link
                     to={`/viewDetails/${spot?._id}`}

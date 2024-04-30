@@ -28,7 +28,7 @@ const MyList = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/touristSpot/${_id}`, {
+        fetch(`https://journey-beck.vercel.app/touristSpot/${_id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -51,70 +51,78 @@ const MyList = () => {
   return (
     <div>
       <div className=" mt-16 mb-8 relative">
-        {filterSpot.map((spot) => (
-          <div key={spot?._id} className=" bg-gray-100 my-10 text-gray-800">
-            <div className="container mx-auto space-y-12">
-              <div className="flex flex-col rounded-md shadow-sm lg:flex-row">
-                <img
-                  src={spot?.photoURL}
-                  alt={spot?.tourists_spot_name}
-                  className="h-80 bg-gray-500 aspect-video"
-                />
-                <div className="flex flex-col justify-center flex-1 px-6 md:relative ">
-                  <span className="text-xs uppercase text-gray-600">
-                    {spot?.seasonality}
-                  </span>
-                  <h3 className="text-xl my-3 font-bold">
-                    {spot?.tourists_spot_name}
-                  </h3>
-                  <h3 className="text-3xl font-semibold">{spot?.photoTitle}</h3>
-                  <p className="my-3 text-gray-600">{spot?.details}</p>
+        {
+          filterSpot ? 
 
-                  <div className="flex justify-between ">
-                    <Link
-                      to={`/viewDetails/${spot?._id}`}
-                      className="relative mt-2 inline-flex items-center justify-center p-2 overflow-hidden tracking-tighter border rounded-lg group bg-green-500"
+          filterSpot.map((spot) => (
+            <div key={spot?._id} className=" bg-gray-100 my-10 text-gray-800">
+              <div className="container mx-auto space-y-12">
+                <div className="flex flex-col rounded-md shadow-sm lg:flex-row">
+                  <img
+                    src={spot?.photoURL}
+                    alt={spot?.tourists_spot_name}
+                    className="h-80 bg-gray-500 aspect-video"
+                  />
+                  <div className="flex flex-col justify-center flex-1 px-6 md:relative ">
+                    <span className="text-xs uppercase text-gray-600">
+                      {spot?.seasonality}
+                    </span>
+                    <h3 className="text-xl my-3 font-bold">
+                      {spot?.tourists_spot_name}
+                    </h3>
+                    <h3 className="text-3xl font-semibold">{spot?.photoTitle}</h3>
+                    <p className="my-3 text-gray-600">{spot?.details}</p>
+  
+                    <div className="flex justify-between ">
+                      <Link
+                        to={`/viewDetails/${spot?._id}`}
+                        className="relative mt-2 inline-flex items-center justify-center p-2 overflow-hidden tracking-tighter border rounded-lg group bg-green-500"
+                      >
+                        <span className="absolute w-0 h-0 transition-all duration-700 ease-out bg-green-500 rounded-full group-hover:w-56 group-hover:h-56"></span>
+                        <span className="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent"></span>
+                        <span className="relative"> View Details </span>
+                      </Link>
+  
+                      <Link
+                        to={`/update/${spot?._id}`}
+                        className="relative mt-2 inline-flex items-center justify-center p-2 overflow-hidden tracking-tighter border rounded-lg group bg-green-500 "
+                      >
+                        <span className="absolute w-0 h-0 transition-all duration-700 ease-out rounded-full group-hover:w-56 group-hover:h-56"></span>
+                        <span className="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent"></span>
+                        <span className="relative"> Update Details </span>
+                      </Link>
+                    </div>
+  
+                    <div
+                      onClick={() => hanleDelete(spot?._id)}
+                      className="absolute right-0 top-0"
                     >
-                      <span className="absolute w-0 h-0 transition-all duration-700 ease-out bg-green-500 rounded-full group-hover:w-56 group-hover:h-56"></span>
-                      <span className="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent"></span>
-                      <span className="relative"> View Details </span>
-                    </Link>
-
-                    <Link
-                      to={`/update/${spot?._id}`}
-                      className="relative mt-2 inline-flex items-center justify-center p-2 overflow-hidden tracking-tighter border rounded-lg group bg-green-500 "
-                    >
-                      <span className="absolute w-0 h-0 transition-all duration-700 ease-out rounded-full group-hover:w-56 group-hover:h-56"></span>
-                      <span className="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent"></span>
-                      <span className="relative"> Update Details </span>
-                    </Link>
-                  </div>
-
-                  <div
-                    onClick={() => hanleDelete(spot?._id)}
-                    className="absolute right-0 top-0"
-                  >
-                    <Link className="relative mt-2 inline-flex items-center justify-center p-2 overflow-hidden tracking-tighter border rounded-lg group bg-secondary">
-                      <span className="absolute w-0 h-0 transition-all duration-700 ease-out bg-green-500 rounded-full group-hover:w-56 group-hover:h-56"></span>
-                      <span className="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent"></span>
-                      <span className="relative">
-                        {" "}
-                        <MdOutlineDeleteForever
-                          data-tooltip-id="my-tooltip"
-                          data-tooltip-content="Delete !"
-                          data-tooltip-place="top"
-                          className="text-2xl"
-                        >
+                      <Link className="relative mt-2 inline-flex items-center justify-center p-2 overflow-hidden tracking-tighter border rounded-lg group bg-secondary">
+                        <span className="absolute w-0 h-0 transition-all duration-700 ease-out bg-green-500 rounded-full group-hover:w-56 group-hover:h-56"></span>
+                        <span className="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent"></span>
+                        <span className="relative">
                           {" "}
-                        </MdOutlineDeleteForever>{" "}
-                      </span>
-                    </Link>
+                          <MdOutlineDeleteForever
+                            data-tooltip-id="my-tooltip"
+                            data-tooltip-content="Delete !"
+                            data-tooltip-place="top"
+                            className="text-2xl"
+                          >
+                            {" "}
+                          </MdOutlineDeleteForever>{" "}
+                        </span>
+                      </Link>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))
+
+          : 
+
+          <> <Link to='/addSpot' > <button className="bg-green-500  " >Plase add Your spot</button> </Link> </>
+        }
       </div>
       <Tooltip> </Tooltip>
     </div>

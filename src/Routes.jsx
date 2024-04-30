@@ -12,6 +12,7 @@ import Private from "./Components/Private"
 import Protected from "./Components/Protected";
 import ViewDetails from "./Components/ViewDetails";
 import Update from "./Components/Update";
+import CountryList from "./Pages/CountryList";
 
 export const router = createBrowserRouter([
     {
@@ -22,7 +23,7 @@ export const router = createBrowserRouter([
         {
             path: "/",
             element: <Home> </Home>,
-            loader : () => fetch(`http://localhost:5000/touristSpot`)
+            loader : () => fetch(`https://journey-beck.vercel.app/touristSpot`)
         },
         {
           path: "/contact",
@@ -31,12 +32,12 @@ export const router = createBrowserRouter([
         {
           path: "/touristSpot",
           element: <TouristSpot> </TouristSpot>,
-          loader : () => fetch(`http://localhost:5000/touristSpot`)
+          loader : () => fetch(`https://journey-beck.vercel.app/touristSpot`)
         },
         {
           path: "/viewDetails/:id",
           element: <Protected> <ViewDetails> </ViewDetails> </Protected>,
-          loader: () => fetch(`http://localhost:5000/touristSpot`)
+          loader: () => fetch(`https://journey-beck.vercel.app/touristSpot`)
         },
         {
           path: "/addSpot",
@@ -45,7 +46,7 @@ export const router = createBrowserRouter([
         {
           path: "/myList",
           element: <Private> <MyList> </MyList> </Private> ,
-          loader : () => fetch(`http://localhost:5000/touristSpot`)
+          loader : () => fetch(`https://journey-beck.vercel.app/touristSpot`)
         },
         {
           path: "/login",
@@ -54,11 +55,16 @@ export const router = createBrowserRouter([
         {
           path: "/update/:id",
           element: <Update> </Update> ,
-          loader : ({params}) => fetch(`http://localhost:5000/touristSpot/${params.id}`)
+          loader : ({params}) => fetch(`https://journey-beck.vercel.app/touristSpot/${params.id}`)
         },
         {
           path: "/register",
           element: <Register> </Register> ,
+        },
+        {
+          path: "/country",
+          element: <Protected> <CountryList> </CountryList> </Protected>  ,
+          loader : () => fetch(`https://journey-beck.vercel.app/countries`)
         },
       ],
     },
