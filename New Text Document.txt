@@ -1,9 +1,0 @@
-	Usage Packages
-	1. Tailwind CSS
-	2. DaisyUI
-	3. React Icons
-	4. react-simple-typewriter
-	5. react-tooltip
-	6. firebase
-	7. propTypes
-	8. sweetalert2

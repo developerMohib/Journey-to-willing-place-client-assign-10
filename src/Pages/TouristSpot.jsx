@@ -7,9 +7,10 @@ import { Link, useLoaderData } from "react-router-dom";
 const TouristSpot = () => {
   const allSpots = useLoaderData();
   // const [spotLen, setSpotLen] = useState(6)
-
   // const sixSpot = useLoaderData();
+  
   const [sortBy, setSortBy] = useState(null);
+
 const handleSortChange = (event) => {
   setSortBy(event.target.value);
 }
@@ -81,7 +82,7 @@ const sortedData = [...allSpots].sort((p1, p2) => {
       </div>
       {/* card */}
       <div className="lg:grid md:grid grid-cols-3 gap-8 mt-16 mb-8 lg:p-8 md:p-4 p-1 ">
-        {allSpots.map((spot) => (
+        {sortedData.map((spot) => (
           <div key={spot?._id}>
             <div className="flex flex-col p-3 space-y-6 overflow-hidden rounded-lg shadow-md bg-gray-50 text-gray-800">
               <div>
@@ -194,13 +195,7 @@ const sortedData = [...allSpots].sort((p1, p2) => {
         ))}
       </div>
       
-{/* <div className={`text-center mb-8 ${spotLen === allSpots.length && 'hidden' } `}>
-        <div className="bg-green-500  relative inline-flex items-center justify-center px-10 py-4 overflow-hidden font-mono font-medium tracking-tighter border rounded-lg group">
-          <span className="absolute w-0 h-0 transition-all duration-500 ease-out bg-green-400 rounded-full group-hover:w-56 group-hover:h-56"></span>
-          <span className="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-gray-700"></span>
-          <span onClick={() => setSpotLen(sortedData.length)} className="relative">Load More </span>
-        </div>
-      </div> */}
+
     </div>
   );
 };

@@ -37,7 +37,7 @@ export const router = createBrowserRouter([
         {
           path: "/viewDetails/:id",
           element: <Protected> <ViewDetails> </ViewDetails> </Protected>,
-          loader: () => fetch(`https://journey-beck.vercel.app/touristSpot`)
+          loader: () => fetch(`https://journey-beck.vercel.app/touristSpot/`)
         },
         {
           path: "/addSpot",

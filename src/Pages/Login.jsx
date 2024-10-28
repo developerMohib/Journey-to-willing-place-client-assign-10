@@ -1,23 +1,24 @@
 import { useContext, useState } from "react";
-import { FaGithub, FaGoogle, FaTwitter } from "react-icons/fa";
-import { FaFaceFrown, FaFaceGrin } from "react-icons/fa6";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+// import { FaGithub, FaGoogle, FaTwitter } from "react-icons/fa";
+// import { FaFaceFrown, FaFaceGrin } from "react-icons/fa6";
+// import { Link,} from "react-router-dom";
+// import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthCustomContext } from "../MainProvider/MainProvider";
 import Swal from "sweetalert2";
 
 const Login = () => {
   const [showPass, setShowPass] = useState(false);
-  const {user, signInGoogle,logInUser, signInGithub} = useContext(AuthCustomContext);
-  const location = useLocation() ;
-  const Navigate = useNavigate();
+  const { signInGoogle,logInUser, signInGithub} = useContext(AuthCustomContext);
+  // const location = useLocation() ;
+  // const Navigate = useNavigate();
 
   const handleSignIn = (e) => {
     e.preventDefault(); 
-    const formV = e.target ;
-    const name = formV.name.value;
-    const email = formV.email.value;
-    const password = formV.password.value;
-    console.log(password, email,name, 'login page')
+    // const form = e?.target ;
+    // const name = form?.name.value;
+    const email = 'mohib';
+    const password = 'take';
+    console.log(password, email, 'login page')
 
      // send email and password in database
      logInUser(email, password)
@@ -33,7 +34,7 @@ const Login = () => {
            timer: 1500
          });
        }
-       Navigate(location?.pathname ? location.state : '/' );
+      //  Navigate(location?.pathname ? location.state : '/' );
      })
      .catch((error) => {
        console.error(error.message, 'login page');
@@ -74,13 +75,12 @@ const Login = () => {
       });
   };
 
-  console.log(user,'user from login ')
   return (
     <div>
       <div className="text-center mt-10">
         <h1 className="md:text-5xl text-3xl font-bold ">Log In</h1>
       </div>
-      <div className="md:grid grid-cols-2 items-center my-10 px-10 justify-between">
+      {/* <div className="md:grid grid-cols-2 items-center my-10 px-10 justify-between">
         <div>
           <img
             className="min-h-screen"
@@ -88,7 +88,6 @@ const Login = () => {
             alt=""
           />
         </div>
-        {/* my form */}
         <div className="w-full m-auto space-y-3 rounded-xl bg-gray-50 text-gray-800">
           <div className="bg-[#F4F3F0] p-10 ">
             <form onSubmit={handleSignIn} >
@@ -107,7 +106,6 @@ const Login = () => {
                   />
                 </label>
               </div>
-              {/* pass */}
               <div>
                 <label className="form-control relative w-full">
                   <div className="label">
@@ -164,7 +162,7 @@ const Login = () => {
               >
                 <FaGithub />
               </button>
-              {/* <ToastContainer /> */}
+              
             </div>
             <p className="text-xl text-center sm:px-6 text-gray-600">
               Dont have an account?
@@ -174,7 +172,8 @@ const Login = () => {
             </p>
           </div>
         </div>
-      </div>
+      </div> */}
+      <h1>hahfashfd</h1>
     </div>
   );
 };

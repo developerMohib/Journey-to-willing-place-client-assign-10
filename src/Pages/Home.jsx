@@ -8,6 +8,7 @@ import { useState } from "react";
 
 const Home = () => {
   const sixSpot = useLoaderData();
+  
   const [sortBy, setSortBy] = useState(null);
 const handleSortChange = (event) => {
   setSortBy(event.target.value);
@@ -181,7 +182,6 @@ const sortedData = [...sixSpot].sort((p1, p2) => {
           </div>
         ))}
       </div>
-
       <Country> </Country>
     </div>
   );

@@ -7,15 +7,14 @@ import Swal from "sweetalert2";
 
 const MyList = () => {
   const { user } = useContext(AuthCustomContext);
-
   const myspot = useLoaderData();
+  
   console.log(myspot, "slp");
   const [remain, setRemain] = useState(myspot);
 
   const filterSpot = remain.filter((item) => item.email == user.email);
   // const filterSpot = myspot.filter((item) => item.email == user.email);
 
-  // console.log(filterSpot, "filter");
   const hanleDelete = (_id) => {
     console.log(_id, "paice from my lish and dlete ");
     Swal.fire({
